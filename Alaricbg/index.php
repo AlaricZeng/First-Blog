@@ -38,7 +38,7 @@
             </div>
             <div class="post-content">
             	<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
-             	<div id="each-post-content"><?php echo wp_trim_words( get_the_content(),130); ?><a href="<?php the_permalink(); ?>">【阅读全文】</a></div>
+             	<div id="each-post-content"><?php echo wp_trim_words( get_the_content(),114); ?><a href="<?php the_permalink(); ?>">【阅读全文】</a></div>
             </div>
             <div class="date">
              	<span>发布于：</span> <?php the_date('Y年m月d'); ?>
