@@ -1,0 +1,538 @@
+@charset "utf-8";
+/* CSS Document */
+body
+{
+	width:100%;
+	margin:0;
+	padding:0;
+}
+
+	#container
+	{
+		width: 100%;
+		background:#FFF;
+		color:#000;
+		text-decoration:none;
+		font-family: "Microsoft YaHei";
+	}
+	
+		#header
+		{
+			width: 100%;
+			height: 120px;
+			background-color: #222832;
+		}
+		
+			#header-content
+			{
+				width: 960px;
+				height: 100%;
+				margin: auto;
+				padding:0;
+			}	
+				
+				#header-content a
+				{
+					display: inline-block;
+					margin:0;
+					margin-top: 20px;
+					text-decoration: none;
+					color: #b9e159;
+					font-size:30px;
+					outline: none;
+				}
+				
+				#header-content span
+				{
+					display: block;
+					margin-top: 18px;
+					margin-left: 120px;
+					color:#FFF;
+				}
+				
+				#header-content #categories
+				{
+					float:right;
+					padding:0;
+					margin-top: -50px;
+					list-style: none;
+				}
+					
+					#header-content #categories li
+					{
+						float:left;
+					}
+
+						#header-content #categories li a
+						{
+							display:block;
+							padding-left: 30px;
+							font-size: 21px;
+							outline: none;
+						}
+						
+						#header-content #categories li a:hover
+						{
+							color:#FD3C1A;
+						}
+						
+	#main
+	{
+		float:left;
+		width: 773px;
+		height: 100%;
+		margin-left: 198px;
+		padding:0;
+	}
+
+		#category-image
+		{
+			float:left;
+			border:1px solid #e6e6e6;
+			width: 136px;
+			height: 136px;
+		}
+		
+			#category-image a
+			{
+				text-decoration:none;
+			}
+		
+				#category-image #news-img
+				{
+					display: block;
+					width: 67px;
+					margin-left:auto;
+					margin-right:auto;
+					margin-top:15px;
+					border: 0px;
+				}
+
+				#category-image span
+				{
+					display: block;
+					width:38px;
+					margin-left:auto;
+					margin-right:auto;
+					margin-top:10px;
+					font-size:18px;
+					font-family: "黑体";
+					font-weight:bold;
+				}
+				
+				#category-image #news-span
+				{
+					color: #f3300a;
+				}
+
+				#category-image #tech-img
+				{
+					display: block;
+					width: 80px;
+					margin-left:auto;
+					margin-right:auto;
+					margin-top:15px;
+					border: 0px;
+				}
+				
+				#category-image #tech-span
+				{
+					color: #195fd1;
+				}
+				
+				#category-image #photo-img
+				{
+					display: block;
+					width: 100px;
+					margin-left:auto;
+					margin-right:auto;
+					margin-top:20px;
+					border: 0px;
+				}
+				
+				#category-image #photo-span
+				{
+					color: #9f2ad5;
+				}
+				
+				#category-image #moment-img
+				{
+					display: block;
+					width: 100px;
+					margin-left:auto;
+					margin-right:auto;
+					margin-top:15px;
+					border: 0px;
+				}
+				
+				#category-image #moment-span
+				{
+					color: #6b8d10;
+				}
+				
+		.post-content
+		{
+			margin-top: 20px;
+			margin-left:160px;
+			height: 165px;
+		}
+		
+			.post-content a
+			{
+				display:block;
+				text-decoration:none;
+				color:#555;
+				font-size: 22px;
+				outline: none;
+			}
+
+			#each-post-content
+			{
+				margin-top: 11px;
+				color:#A3A3A3;
+				font-size:15px;
+			}
+				#each-post-content a
+				{
+					display: inline;
+					text-decoration: none;
+					font-size: 14px;
+					color: #555;
+					outline: none;
+				}
+		.date
+		{
+			margin-left: 160px;
+			margin-top: -45px;
+			float:left;
+			color:#000;
+			font-size:15px;
+		}
+			
+			.date span
+			{
+				color:#555;
+				padding-left: -10px;
+			}
+			
+		.post-meta
+		{
+			margin-top:-45px;
+			margin-left:300px;
+			list-style:none;
+		}
+			
+			.post-meta li img
+			{
+				float:left;
+				margin-top:-42px;
+			}
+				
+			.post-meta li a
+			{
+				text-decoration: none;
+				font-size: 15px;
+				margin-left:25px;
+				color: #555;
+				outline: none;
+			}
+				
+		.bottom_line
+		{
+			height:2px;
+			border-top:1px solid #ecede8;
+			border-bottom:1px solid #ecede8;
+		}
+		
+		#single-title
+		{
+			font-size: 28px;
+			color: #35AAB7;
+			margin-top: 15px;
+		}
+		
+		#single-content
+		{
+			font-size: 16px;
+			color: #000;
+			margin-top: 15px;
+			line-height: 25px;
+		}
+		
+			#comments-number
+			{
+				font-size: 25px;
+				color: #35AAB7;
+				margin-top: 35px;
+			}
+			
+			.commentlist
+			{
+				list-style: none;
+				padding: 0px;
+				margin-top: 30px;
+				margin-bottom: 30px;
+				clear: both;
+			}
+			
+				
+				.commentlist img
+				{
+					float:left;
+					width: 35px;
+					height: 35px;
+					border-radius:50%;
+					-ms-border-radius:50%;
+				}
+				
+				.commentlist #comment-author
+				{
+					display:block;
+					float:left;
+					text-decoration: none;
+					margin-top: 5px;
+					margin-left: 8px;
+					color: #555;
+					
+				}
+				
+					.commentlist #comment-author a
+					{
+						color: #555;
+						text-decoration: none;
+						outline: none;
+					}
+				
+				.commentlist #comment-time
+				{
+					clear:both;
+					margin-left: 43px;
+					font-size: 14px;
+					color: #999;
+				}
+				
+					.commentlist #comment-time a
+					{
+						text-decoration: none;
+						color: #555;
+						margin-left: 5px;
+						outline: none;
+					}
+				
+				.commentlist #comment-content
+				{
+					clear:both;
+					margin-left: 43px;
+					margin-top: -10px;
+				}
+		
+				.commentlist #comment-reply a
+				{
+					color: #555;
+					font-size: 18px;
+					margin-left: 43px;
+					text-decoration: none;
+					outline: none;
+				}
+				
+				#respond #respond-title
+				{
+					color: #555;
+					font-size: 20px;
+				
+				}
+				
+				#respond .input-content
+				{
+					margin-top: 35px;
+				}
+				
+					#respond .input-content label
+					{
+						color: #555;
+						font-size: 18px;
+					}
+					
+					#respond .input-content input
+					{
+						height: 28px;
+						width: 270px;
+						border:0;
+						background: #f3f3f3;
+						padding-left: 7px;
+						margin-left: 10px;
+						color:#000;
+						font-size: 16px;
+						padding-top: 5px\9;
+						height: 23px\9;
+					}
+					
+					#respond .input-content textarea
+					{
+						display: block;
+						height: 180px;
+						width: 760px;
+						border:0;
+						background: #f3f3f3;
+						margin-top: 8px;
+						padding-left: 7px;
+						padding-top: 3px;
+						resize:none;
+						color:#000;
+						font-size: 16px;
+					}
+					
+					#respond #submit
+					{
+						margin-top:20px;
+						background:url(../images/button.png) no-repeat left;
+						border: 0;
+						height: 45px;
+						width: 100px;
+						cursor:pointer;
+					}
+					
+					#respond #submit:hover
+					{
+						background:url(../images/button_hover.png) no-repeat left;
+					}
+				
+	#side
+	{
+		float:left;
+		width: 157px;
+		height: 100%;
+		margin-top: 20px;
+		margin-left: 28px;
+	}
+
+		#search input
+		{
+			height: 22px;
+			height: 20px\9;
+			width: 157px;
+			border:0;
+			background: #f3f3f3;
+			padding-left: 7px;
+			padding-top: 3px\9;
+			color:#999;
+			font-size: 16px;
+		}
+		
+		#side img
+		{
+			float: left;
+			margin-top: 35px;
+		}
+		
+		#side span
+		{
+			float: left;
+			display:block;
+			margin-left: 10px;
+			margin-top: 38px;
+			color:#555;
+			font-size:16px;
+		}
+		
+		#recent-page
+		{
+			clear:both;
+			margin-top: 90px;
+		}
+			
+			#recent-page a
+			{
+				display: block;
+				text-decoration: none;
+				color: #555;
+				font-size:16px;
+				margin-bottom: 28px;
+				outline: none;
+			}
+		
+		
+		#recent-comment
+		{
+			clear:both;
+			margin-top: 115px;
+		}
+			
+			#recent-comment #author-link
+			{
+				display:inline;
+				text-decoration: none;
+				color: #555;
+				font-size:16px;
+				margin-bottom: 28px;
+				outline: none;
+			}
+			
+			#recent-comment span
+			{
+				float: none;
+				display: inline;
+				margin: 0;
+				color:#555;
+				font-size:16px;
+			}
+			
+			#recent-comment #page-link
+			{
+				display: inline;
+				text-decoration: none;
+				color: #000;
+				font-size:16px;
+				margin-bottom: 100px;
+				outline: none;
+			}
+	
+	#footer
+	{
+		clear:both;
+		width: 100%;
+		height: 90px;
+		margin-top: 1000px;
+		margin-bottom:0px;
+		background-color: #222832;
+	}
+	
+		.footer-text
+		{
+			width: 960px;
+			margin: auto;
+			margin-top: 3px;
+		}
+		
+			.footer-text span
+			{
+				color: #686b6c;
+				font-size: 14px;
+				margin-left: 3px;
+				margin-right: 3px;
+			}
+			
+			.footer-text .seperation
+			{
+				color: color: #686b6c;
+				font-size: 14px;
+				margin-left: 6px;
+			}
+		
+				.footer-text span a
+				{
+					margin-left: 3px;
+					margin-right: 3px;
+					text-decoration: none;
+					color: #7e8283;
+					outline: none;
+				}
+			
+			.footer-text a
+			{
+				margin-left: 5px;
+				text-decoration: none;
+				color: #7e8283;
+				font-size: 14px;
+				outline: none;
+			}
