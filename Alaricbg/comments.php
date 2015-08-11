@@ -31,22 +31,25 @@
 			<?php if (comments_open()): ?>
 			<div id="respond">
             	 <div id="respond-title">发表评论</div>
-                 <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
+                 <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform" onsubmit="return submitComment();">
                  	<div class="input-content">
-                    	<label for="author">姓名*:</label>
-                        <input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" />
+                    	<label for="author">用户名*:</label>
+                        <input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" onfocus="inputComment('author')" 
+                        	 	onblur="finishCommentItem('author')" />
+                        <span id="warning-author">请输入用户名</span>
                     </div>
                     <div class="input-content">
                         <label for="email">电子邮件*:</label>
-                        <input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>"/><br />
+                        <input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" onfocus="inputComment('email')" onblur="finishCommentItem('email')"/>
+                        <span id="warning-email">请输入电子邮件</span>
                     </div>
                     <div class="input-content">
                         <label for="url">站点:</label>
-                        <input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" />
+                        <input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" onfocus="inputComment('url')" onblur="finishCommentItem('url')"/>
                     </div>
                     <div class="input-content">
                         <label for="comment">评论:</label>
-                        <textarea name="comment" id="comment" role="" cols=""></textarea>
+                        <textarea name="comment" id="comment" role="" cols="" onfocus="inputComment('comment')" onblur="finishCommentItem('comment')"></textarea>
                     </div>
                         <input  id="submit" type="submit" class="commentsubmit" value="" />
                         <?php comment_id_fields(); ?>

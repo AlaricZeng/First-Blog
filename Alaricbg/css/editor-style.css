@@ -367,6 +367,14 @@ body
 						height: 23px\9;
 					}
 					
+					#respond .input-content span
+					{
+						margin-left: 3px;
+						color: red;
+						font-size: 14px;
+						visibility: hidden;
+					}
+					
 					#respond .input-content textarea
 					{
 						display: block;
@@ -390,6 +398,7 @@ body
 						height: 45px;
 						width: 100px;
 						cursor:pointer;
+						outline: none;
 					}
 					
 					#respond #submit:hover
