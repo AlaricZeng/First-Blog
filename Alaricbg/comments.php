@@ -8,17 +8,9 @@
 ?>
 			<div id="comments">
             <div id="comments-number"><?php comments_number('没有评论','1 条评论','% 条评论' );?></div>
-            <?php if (have_comments()): ?>
-            	<?php $comments=get_comments(array('number'=>5,'status'=>'approve','type'=>'comment'));
-					  foreach($comments as $comment) {?>
-						<div class="commentlist">
-            				<?php echo get_avatar($comment); ?>
-                            <span id="comment-author"><?php echo get_comment_author_link(); ?>说道：</span>
-                            <div id="comment-time"><?php echo get_comment_date(); ?><?php echo get_comment_time(); ?><a href="<?php echo edit_comment_link?>">编辑</a></div>
-                            <div id="comment-content"><?php echo comment_text(); ?></div>
-                            <div id="comment-reply"><a href="<?php echo comment_reply_link(); ?>">回复</a></div>
-						</div>
-                <?php }?>
+            <div class="commentlist">
+          		<?php wp_list_comments('type=comment&callback=advanced_comment'); ?>
+            </div>
             <?php if ($wp_query->max_num_pages > 1) : ?>
 			<div class="pagination">
             	<ul>
@@ -27,7 +19,6 @@
                 </ul>
             </div>
            	<?php endif; ?>
-			<?php endif; ?>
 			<?php if (comments_open()): ?>
 			<div id="respond">
             	 <div id="respond-title">发表评论</div>
