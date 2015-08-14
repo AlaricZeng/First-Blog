@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+   <div id="content-container">
 	<div id="main">
     <?php if (have_posts()): ?>
 		<?php while (have_posts()) : the_post(); ?>
@@ -62,5 +63,6 @@
         </div>
         <?php endif; ?>
 	</div>
-<?php get_sidebar(); ?>
+  <?php get_sidebar(); ?>
+</div>
 <?php get_footer(); ?>
