@@ -275,65 +275,78 @@ body
 				clear: both;
 			}
 			
-				
-				.commentlist img
+				.comment-container
 				{
-					float:left;
-					width: 35px;
-					height: 35px;
-					border-radius:50%;
-					-ms-border-radius:50%;
+					margin-top: 30px;
+					margin-bottom: 30px;
+					padding-bottom: 5px;
+					border-bottom:1px solid #C8C8C8;
 				}
 				
-				.commentlist #comment-author
-				{
-					display:block;
-					float:left;
-					text-decoration: none;
-					margin-top: 5px;
-					margin-left: 8px;
-					color: #555;
+					.gravatar img
+					{
+						float:left;
+						width: 35px;
+						height: 35px;
+						border-radius:50%;
+						-ms-border-radius:50%;
+					}
+				
+					.comment-author
+					{
+						display:block;
+						float:left;
+						text-decoration: none;
+						margin-top: 5px;
+						margin-left: 8px;
+						color: #555;
 					
-				}
+					}
 				
-					.commentlist #comment-author a
+						.comment-author a
+						{
+							color: #555;
+							text-decoration: none;
+							outline: none;
+						}
+				
+					.comment-time
+					{
+						clear:both;
+						margin-left: 43px;
+						font-size: 14px;
+						color: #999;
+					}
+				
+						.comment-time a
+						{
+							text-decoration: none;
+							color: #555;
+							margin-left: 5px;
+							outline: none;
+						}
+					
+							.comment-time .edit-comment a
+							{
+								color: #555;
+								font-size: 14px;
+							}
+				
+					.comment-content
+					{
+						clear:both;
+						margin-left: 43px;
+						margin-top: -10px;
+					}
+					
+					.comment-reply a
 					{
 						color: #555;
+						font-size: 18px;
+						margin-left: 43px;
 						text-decoration: none;
 						outline: none;
 					}
-				
-				.commentlist #comment-time
-				{
-					clear:both;
-					margin-left: 43px;
-					font-size: 14px;
-					color: #999;
-				}
-				
-					.commentlist #comment-time a
-					{
-						text-decoration: none;
-						color: #555;
-						margin-left: 5px;
-						outline: none;
-					}
-				
-				.commentlist #comment-content
-				{
-					clear:both;
-					margin-left: 43px;
-					margin-top: -10px;
-				}
-		
-				.commentlist #comment-reply a
-				{
-					color: #555;
-					font-size: 18px;
-					margin-left: 43px;
-					text-decoration: none;
-					outline: none;
-				}
 				
 				#respond #respond-title
 				{
