@@ -45,7 +45,9 @@
                         		<textarea name="comment" id="comment" role="" cols="" onfocus="inputComment('comment')" onblur="finishCommentItem('comment')"></textarea>
                     		</div>
                         	<input  id="submit" type="submit" class="commentsubmit" value="" />
-                        	<?php comment_id_fields(); ?>
+                            <input name="comment_post_ID" id="comment_post_ID" value="1" type="hidden">
+                            <input name="comment_parent" id="comment_parent" value="0" type="hidden">
+                            <?php comment_id_fields(); ?>
                         	<?php do_action('comment_form',$post->ID); ?>
       	 				</form>
                 		<p class="cancel"><?php cancel_comment_reply_link('Cancel Reply'); ?></p>

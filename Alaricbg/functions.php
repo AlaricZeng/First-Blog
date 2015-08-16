@@ -1,8 +1,8 @@
 <?php
 function advanced_comment($comment, $args, $depth) 
 {
-   $GLOBALS['comment'] = $comment; ?>
-   <div class="comment-container">
+   $GLOBALS['comment'] = $comment;?>
+   <div class="comment-container" id="comment-<?php comment_ID();?>">
         <div class="gravatar"> 
 			<?php echo get_avatar($comment);?>
         </div>
@@ -16,8 +16,12 @@ function advanced_comment($comment, $args, $depth)
         <div class="comment-content">
 			<?php echo comment_text(); ?>
         </div>
-		<div class="comment-reply">
-        	<?php comment_reply_link(array_merge( $args, array('reply_text' => '回复','depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-        </div>
+        <script type="text/javascript">
+			//var postURL=<?php echo get_option('siteurl'); ?>
+			alert("aaa");
+        </script>
+		<div class="comment-reply" onclick="replyComment(<?php echo $comment->comment_post_ID;?>,<?php comment_ID();?>,postURL)">
+        	回复
+      	</div>
    </div>
 <?php } ?>

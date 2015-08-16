@@ -109,3 +109,20 @@ function submitComment()
 		}
 	return true;
 }
+
+function replyComment(postID,commentID,postURL)
+{
+		alert(postURL);
+	var containerDIV=document.getElementById("comment-"+commentID);
+	var newForm=document.createElement("form");
+	var newDIV=document.createElement("div");
+	var newInput=document.createElement("input");
+		newForm.action=url;
+		newForm.method="post";
+		newInput.type=text;
+		newInput.name="author";
+		newInput.value="zyj1994210";
+		newDIV.appendChild(newInput);
+		newForm.appendChild(newDIV);
+		containerDIV.appendChild(newForm);
+}
