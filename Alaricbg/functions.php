@@ -16,7 +16,7 @@ function advanced_comment($comment, $args, $depth)
         <div class="comment-content">
 			<?php echo comment_text(); ?>
         </div>
-		<div class="comment-reply" onclick="replyComment(<?php echo $comment->comment_post_ID;?>,<?php echo $comment->comment_ID; ?>,'<?php echo get_option('siteurl')?>'+'/wp-comments-post.php'),'<?php echo $comment_author; ?>','<?php echo $comment_author_email; ?>','<?php echo $comment_author_url; ?>'">
+		<div class="comment-reply" onclick="replyComment(<?php echo $comment->comment_post_ID;?>,<?php echo $comment->comment_ID; ?>,'<?php echo get_option('siteurl')?>'+'/wp-comments-post.php','<?php echo comment_author(); ?>','<?php echo comment_author_email(); ?>','<?php echo comment_author_url(); ?>')">
         	回复
       	</div>
    </div>
