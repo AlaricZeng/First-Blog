@@ -42,11 +42,9 @@
                     		</div>
                     		<div class="input-content">
                         		<label for="comment">评论:</label>
-                        		<textarea name="comment" id="comment" role="" cols="" onfocus="inputComment('comment')" onblur="finishCommentItem('comment')"></textarea>
+                        		<textarea name="comment" id="comment" rows="" cols="" onfocus="inputComment('comment')" onblur="finishCommentItem('comment')"></textarea>
                     		</div>
-                        	<input  id="submit" type="submit" class="commentsubmit" value="" />
-                            <input name="comment_post_ID" id="comment_post_ID" value="1" type="hidden">
-                            <input name="comment_parent" id="comment_parent" value="0" type="hidden">
+                        	<input  class="submit" type="submit" class="commentsubmit" value="" />
                             <?php comment_id_fields(); ?>
                         	<?php do_action('comment_form',$post->ID); ?>
       	 				</form>

@@ -1,5 +1,7 @@
 // JavaScript Document
 var element=document.getElementById('s');
+var lastCommentID=null;
+
 function inputSearch()
 {
 	if (element.value=="点些喜欢的东西吧")
@@ -110,19 +112,135 @@ function submitComment()
 	return true;
 }
 
-function replyComment(postID,commentID,postURL)
+function replyComment(postID,commentID,postURL,author_name,author_email,author_url)
 {
-		alert(postURL);
-	var containerDIV=document.getElementById("comment-"+commentID);
-	var newForm=document.createElement("form");
+	if (lastCommentID!=null)
+	{
+		if (lastCommentID==commentID)
+		{
+			var lastContainerDIV=document.getElementById("comment-"+lastCommentID);
+				lastContainerDIV.removeChild(lastContainerDIV.lastChild);	
+				lastCommentID=null;
+		}
+		else
+		{
+			var lastContainerDIV=document.getElementById("comment-"+lastCommentID);
+			var containerDIV=document.getElementById("comment-"+commentID);
+			var newForm=document.createElement("form");
+			var newDIV=null;
+				lastContainerDIV.removeChild(lastContainerDIV.lastChild);
+				newForm.action=postURL;
+				newForm.method="post";
+		
+				newDIV=createFormElement("用户名*:","author",author_name);
+				newForm.appendChild(newDIV);
+		
+				newDIV=createFormElement("电子邮件*:","email",author_email);
+				newForm.appendChild(newDIV);
+		
+				newDIV=createFormElement("站点:","url",author_url);
+				newForm.appendChild(newDIV);
+			
+			
+				newDIV=document.createElement("div");
+				newLabel=document.createElement("label");
+				newTextarea=document.createElement("textarea");
+				newDIV.className="input-content";
+				newLabel.for="comment";
+				newLabel.appendChild(document.createTextNode("评论:"));
+				newTextarea.name="comment";
+				newDIV.appendChild(newLabel);
+				newDIV.appendChild(newTextarea);
+				newForm.appendChild(newDIV);
+				
+		 		newInput=document.createElement("input");
+				newInput.type="hidden";
+				newInput.name="comment_post_ID";
+				newInput.value=postID;
+				newForm.appendChild(newInput);
+				
+				newInput=document.createElement("input");
+				newInput.type="hidden";
+				newInput.name="comment_parent";
+				newInput.value=commentID;
+				newForm.appendChild(newInput);
+			
+				newInput=document.createElement("input");
+				newInput.type="submit";
+				newInput.name="submit";
+				newInput.value="";
+				newInput.className="submit";
+				newForm.appendChild(newInput);
+		
+				containerDIV.appendChild(newForm);
+				lastCommentID=commentID;
+		}
+	}
+	else
+	{
+		var containerDIV=document.getElementById("comment-"+commentID);
+		var newForm=document.createElement("form");
+		var newDIV=null;
+			newForm.action=postURL;
+			newForm.method="post";
+		
+			newDIV=createFormElement("用户名*:","author",author_name);
+			newForm.appendChild(newDIV);
+		
+			newDIV=createFormElement("电子邮件*:","email",author_email);
+			newForm.appendChild(newDIV);
+		
+			newDIV=createFormElement("站点:","url",author_url);
+			newForm.appendChild(newDIV);
+		
+		
+			newDIV=document.createElement("div");
+			newLabel=document.createElement("label");
+			newTextarea=document.createElement("textarea");
+			newDIV.className="input-content";
+			newLabel.for="comment";
+			newLabel.appendChild(document.createTextNode("评论:"));
+			newTextarea.name="comment";
+			newDIV.appendChild(newLabel);
+			newDIV.appendChild(newTextarea);
+			newForm.appendChild(newDIV);
+			
+	 		newInput=document.createElement("input");
+			newInput.type="hidden";
+			newInput.name="comment_post_ID";
+			newInput.value=postID;
+			newForm.appendChild(newInput);
+			
+			newInput=document.createElement("input");
+			newInput.type="hidden";
+			newInput.name="comment_parent";
+			newInput.value=commentID;
+			newForm.appendChild(newInput);
+		
+			newInput=document.createElement("input");
+			newInput.type="submit";
+			newInput.name="submit";
+			newInput.value="";
+			newInput.className="submit";
+			newForm.appendChild(newInput);
+		
+			containerDIV.appendChild(newForm);
+			lastCommentID=commentID;
+	}
+}
+
+function createFormElement(labelTextNote,inputName,inputValue)
+{
 	var newDIV=document.createElement("div");
+	var newLabel=document.createElement("label");
 	var newInput=document.createElement("input");
-		newForm.action=url;
-		newForm.method="post";
-		newInput.type=text;
-		newInput.name="author";
-		newInput.value="zyj1994210";
+		newDIV.className="input-content";
+		newLabel.for=inputName;
+		newLabel.appendChild(document.createTextNode(labelTextNote));
+		newInput.type="text";
+		newInput.name=inputName;
+		newInput.value=inputValue;
+		newDIV.appendChild(newLabel);
 		newDIV.appendChild(newInput);
-		newForm.appendChild(newDIV);
-		containerDIV.appendChild(newForm);
+	return newDIV;
 }

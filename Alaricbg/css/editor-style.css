@@ -361,18 +361,18 @@ body
 				
 				}
 				
-				#respond .input-content
+				.input-content
 				{
 					margin-top: 35px;
 				}
 				
-					#respond .input-content label
+					.input-content label
 					{
 						color: #555;
 						font-size: 18px;
 					}
 					
-					#respond .input-content input
+					.input-content input
 					{
 						height: 28px;
 						width: 270px;
@@ -386,7 +386,7 @@ body
 						height: 23px\9;
 					}
 					
-					#respond .input-content span
+					.input-content span
 					{
 						margin-left: 3px;
 						color: red;
@@ -394,7 +394,7 @@ body
 						visibility: hidden;
 					}
 					
-					#respond .input-content textarea
+					.input-content textarea
 					{
 						display: block;
 						height: 180px;
@@ -409,7 +409,7 @@ body
 						font-size: 16px;
 					}
 					
-					#respond #submit
+					.submit
 					{
 						margin-top:20px;
 						background:url(../images/button.png) no-repeat left;
@@ -420,7 +420,7 @@ body
 						outline: none;
 					}
 					
-					#respond #submit:hover
+					.submit:hover
 					{
 						background:url(../images/button_hover.png) no-repeat left;
 					}
