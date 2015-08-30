@@ -15,7 +15,7 @@
        			<a href="<?php echo get_option('home'); ?>">Alaric的咖啡屋</a> 
             </div>	
             <img id="categories" src="<?php bloginfo('template_url')?>/images/list.png">
-            <div id="decoration1"></div>
         </div>
+        <div id="decoration1"></div>
         <div id="content">
                 
