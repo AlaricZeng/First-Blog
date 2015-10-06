@@ -14,8 +14,34 @@
         	<div id="header-content">
        			<a href="<?php echo get_option('home'); ?>">Alaric的咖啡屋</a> 
             </div>	
-            <img id="categories" src="<?php bloginfo('template_url')?>/images/list.png">
+            <div id="categories" onClick=showList(this,'<?php bloginfo("template_url") ?>') onMouseOver=chooseList(this,'<?php bloginfo("template_url") ?>/images/list-choose.png')
+            onMouseOut=unChooseList(this,'<?php bloginfo("template_url") ?>/images/list.png')></div>
+        </div>
+        <div id="side">
+        	<ul>
+            	<li><a href="<?php echo get_option('home'); ?>">主页</a></li>
+                <li><span onClick="showChildUl()" onMouseOver="childUlOver()" onMouseOut="childUlOut()">导航</span> <img id="ul-img" src='<?php bloginfo("template_url")?>/images/child_categories.png' onClick="showChildUl()" onMouseOver="childUlOver()" onMouseOut="childUlOut()"/></li>
+             	<ul id="child-ul">
+                    <li><span onClick="showChildChildUl(0)" onMouseOver="childChildUlOver(0)" onMouseOut="childChildUlOut(0)">文艺范</span> <img id="child-ul-img1" src='<?php bloginfo("template_url")?>/images/child_categories.png' onClick="showChildChildUl(0)" onMouseOver="childChildUlOver(0)" onMouseOut="childChildUlOut(0)"/></li>
+                    <ul class="child-child-ul">
+                    	<li><a href="<?php echo get_category_link(get_cat_ID('随笔')); ?>">随笔</a></li>
+                    	<li><a href="<?php echo get_category_link(get_cat_ID('相册')); ?>">相册</a></li>
+                    </ul>
+                    <li><span onClick="showChildChildUl(1)" onMouseOver="childChildUlOver(1)" onMouseOut="childChildUlOut(1)">技术宅</span> <img id="child-ul-img2" src='<?php bloginfo("template_url")?>/images/child_categories.png' onClick="showChildChildUl(1)" onMouseOver="childChildUlOver(1)" onMouseOut="childChildUlOut(1)"/></li>
+                    <ul class="child-child-ul">
+                    	<li><a href="<?php echo get_category_link(get_cat_ID('资讯')); ?>">新闻</a></li>
+                    	<li><a href="<?php echo get_category_link(get_cat_ID('技术')); ?>">Coding</a></li>
+                    </ul>
+                </ul>
+                <li><a href="<?php echo get_option('home'); ?>/?p=21">关于</a></li>
+                <li><a href="<?php echo get_option('home'); ?>/wp-admin/">登录</a></li>
+            </ul>
+            <form id="search" method="get" action="<?php get_option('home') ?>">
+        		<input type="text" class="search-bar" name="s" id="s" value="搜索..." onfocus="inputSearch()" onblur="finishSearch()"/>
+                <input type="submit" id="submit-button" value="搜索">
+    		</form>
         </div>
         <div id="decoration1"></div>
+        <div id="decoration2"></div>
         <div id="content">
                 

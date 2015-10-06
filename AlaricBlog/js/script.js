@@ -1,16 +1,43 @@
 // JavaScript Document
 var element=document.getElementById('s');
 var lastCommentID=null;
+var angle=0;
+var rotateTime=10;
+var rotateAngle=7/rotateTime;
+var increaseTimeoutID=0;
+var decreaseTimeoutID=0;
+var rotateNum=0;
+var listPosition=-150;
+var singleListPosition=-250;
+var listDisplayTime=0;
+var displayList=true;
+var scrollTop=0;
+var scrollLeft=0;
+var lastScrollTop=0;
+var ableScrollTop=false;
+var maxScrollHeight=0;
+var cancelChooseList=document.createElement("div");
+var cancelChooseListImg=null;
+var increaseListTimeoutID=0;
+var decreaseListTimeoutID=0;
+var increaseListLength=0;
+var increaseListLengthDoc=0;
+var increaseListLengthUnDoc=0;
+var increaseScrollLength=0;
+var increaseScrollLengthDoc=0;
+var increaseScrollLengthUnDoc=0;
+var clickChildChildListNum=-1;
+var clickChildChildList=false;
+var showChildList=true;
+var showChildChildListFir=true;
+var showChildChildListSec=true;
 
 function inputSearch()
 {
-	if (element.value=="点些喜欢的东西吧")
+	if (element.value=="搜索...")
 	{
 		element.value="";
 		element.style.color="#000";
-		element.style.outlineColor="#9ec0f7";
-		element.style.outlineStyle="solid";
-		element.style.outlineWidth="2px";
 	}
 	else
 	{
@@ -22,7 +49,7 @@ function finishSearch()
 {
 	if (element.value=="")
 	{
-		element.value="点些喜欢的东西吧";
+		element.value="搜索...";
 		element.style.color="#999";
 		element.style.outlineStyle="none";
 	}
@@ -187,14 +214,16 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 				newLabel=document.createElement("label");
 				newTextarea=document.createElement("textarea");
 				newDIV.className="input-content";
+				newDIV.style.marginLeft="45px";
 				newLabel.for="comment";
 				newLabel.appendChild(document.createTextNode("评论:"));
 				newTextarea.name="comment";
+				newTextarea.style.backgroundColor="#fff";
+				newTextarea.style.width="90%"
 				newTextarea.onfocus=function(){
 					newTextarea.style.outlineStyle="solid";
 					newTextarea.style.outlineColor="#9ec0f7";
 					newTextarea.style.outlineWidth="2px";
-					newTextarea.style.backgroundColor="#f3f3f3";
 				};
 				newTextarea.onblur=function()
 				{
@@ -215,14 +244,14 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 				newInput.name="comment_parent";
 				newInput.value=commentID;
 				newForm.appendChild(newInput);
-			
+				
 				newInput=document.createElement("input");
 				newInput.type="submit";
 				newInput.name="submit";
-				newInput.value="";
-				newInput.className="submit";
+				newInput.value="提交";
+				newInput.className="reply-submit"
 				newForm.appendChild(newInput);
-		
+				
 				containerDIV.appendChild(newForm);
 				containerDIV.scrollIntoView();
 				lastCommentID=commentID;
@@ -291,19 +320,22 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 			newLabel=document.createElement("label");
 			newTextarea=document.createElement("textarea");
 			newDIV.className="input-content";
+			newDIV.style.marginLeft="45px";
 			newLabel.for="comment";
 			newLabel.appendChild(document.createTextNode("评论:"));
 			newTextarea.name="comment";
+			newTextarea.style.backgroundColor="#fff";
+			newTextarea.style.width="90%";
 			newTextarea.onfocus=function(){
 				newTextarea.style.outlineStyle="solid";
 				newTextarea.style.outlineColor="#9ec0f7";
 				newTextarea.style.outlineWidth="2px";
-				newTextarea.style.backgroundColor="#f3f3f3";
 			};
 			newTextarea.onblur=function()
 			{
 				newTextarea.style.outlineStyle="none";
 			};
+
 			newDIV.appendChild(newLabel);
 			newDIV.appendChild(newTextarea);
 			newForm.appendChild(newDIV);
@@ -319,14 +351,14 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 			newInput.name="comment_parent";
 			newInput.value=commentID;
 			newForm.appendChild(newInput);
-		
+			
 			newInput=document.createElement("input");
 			newInput.type="submit";
 			newInput.name="submit";
-			newInput.value="";
-			newInput.className="submit";
+			newInput.value="提交";
+			newInput.className="reply-submit"
 			newForm.appendChild(newInput);
-		
+			
 			containerDIV.appendChild(newForm);
 			containerDIV.scrollIntoView();
 			lastCommentID=commentID;
@@ -341,12 +373,14 @@ function createFormElement(labelTextNote,inputName,inputValue,commentID)
 	var warningTextAuthor=document.createElement("span");
 	var warningTextEmail=document.createElement("span");
 		newDIV.className="input-content";
+		newDIV.style.marginLeft="45px";
 		newLabel.for=inputName;
 		newLabel.appendChild(document.createTextNode(labelTextNote));
 		newInput.type="text";
 		newInput.className=inputName;
 		newInput.name=inputName;
 		newInput.value=inputValue;
+		newInput.style.backgroundColor="#fff";
 		newInput.onfocus=function()
 		{
 				newInput.style.outlineStyle="solid";
@@ -396,4 +430,678 @@ function createFormElement(labelTextNote,inputName,inputValue,commentID)
 			newDIV.appendChild(warningTextEmail);
 		}
 	return newDIV;
+}
+
+function moveIcon(obj)
+{
+	function increaseAngle()
+	{
+		angle+=rotateAngle;
+		if (angle<0.7 && angle > -0.7)
+		{
+			rotateNum++;
+		}
+		obj.style.transform="rotate("+angle+"deg)";
+		if (angle<7)
+		{
+			increaseTimeoutID=setTimeout(increaseAngle,15);
+		}	
+		else
+		{
+			decreaseTimeoutID=setTimeout(decreaseAngle,15);
+		}
+		if (rotateNum==8)
+		{
+			clearTimeout(increaseTimeoutID);
+			clearTimeout(decreaseTimeoutID);
+			obj.style.transform="rotate(0deg)";
+		}
+	}
+		
+	function decreaseAngle()	
+	{
+		angle-=rotateAngle;
+		if (angle<0.7 && angle > -0.7)
+		{
+			rotateNum++;
+		}
+		obj.style.transform="rotate("+angle+"deg)";
+		if (angle > -7)
+		{
+			decreaseTimeoutID=setTimeout(decreaseAngle,15);
+		}
+		else
+		{
+			increaseTimeoutID=setTimeout(increaseAngle,15);
+		}
+		if (rotateNum==8)
+		{
+			clearTimeout(increaseTimeoutID);
+			clearTimeout(decreaseTimeoutID);
+			obj.style.transform="rotate(0deg)";
+		}
+	}
+	increaseTimeoutID=setTimeout(increaseAngle,15);
+}
+
+function cancelMoveIcon(obj)
+{
+	clearTimeout(increaseTimeoutID);
+	clearTimeout(decreaseTimeoutID);
+	rotateNum=0;
+	obj.style.transform="rotate(0deg)";
+}
+
+function showList(obj,add)
+{
+	var list=document.getElementById("side");
+		if (displayList)
+		{
+			obj.style.backgroundImage="url("+add+"/images/cancel_show_list.png)";
+			cancelChooseListImg=add;
+			obj.style.width="15px";
+			obj.style.height="15px";
+			obj.style.marginTop="-63px";
+			obj.style.marginRight="25px";
+			listDisplayTime=0;
+			displayList=false;
+			list.style.display="block";
+			function increasePosition()
+			{
+				list.style.top=listPosition+"px";
+				listPosition+=(2*(2*listDisplayTime+0.7));
+				listDisplayTime+=0.7;
+				if (listPosition < 73)
+				{
+					setTimeout(increasePosition,15);
+				}
+				else
+				{
+					list.style.top="73px";
+					listPosition=73;
+				}
+			}
+			setTimeout(increasePosition,15);
+		}
+		else
+		{
+			obj.style.backgroundImage="url("+add+"/images/list.png)";
+			obj.style.width="27px";
+			obj.style.height="20px";
+			obj.style.marginTop="-65px";
+			obj.style.marginRight="20px";
+			listDisplayTime=0;
+			displayList=true;
+			function decreasePosition()
+			{
+				list.style.top=listPosition+"px";
+				listPosition-=(2*(2*listDisplayTime+0.7));
+				listDisplayTime+=0.7;
+				if (listPosition > (-170-increaseListLengthDoc))
+				{
+					setTimeout(decreasePosition,15);
+				}
+				else
+				{
+					list.style.display="none";
+					listPosition=-170-increaseListLengthDoc;
+				}
+			}
+			setTimeout(decreasePosition,15);
+		
+		}
+}
+
+function chooseList(obj,add)
+{
+	if (displayList)
+	{
+		obj.style.backgroundImage="url("+add+")";
+		obj.style.width="32px";
+		obj.style.height="26px";
+		obj.style.marginTop="-68px";
+		obj.style.marginRight="18px";
+	}
+}
+
+function unChooseList(obj,add)
+{
+	if (displayList)
+	{
+		obj.style.backgroundImage="url("+add+")";
+		obj.style.width="27px";
+		obj.style.height="20px";
+		obj.style.marginTop="-65px";
+		obj.style.marginRight="20px";
+	}
+}
+
+window.onscroll=function()
+{
+	var list=null;
+		if (list=document.getElementById("side"))
+		{
+	 		if (document.documentElement.scrollTop!=0)
+			{
+				ableScrollTop=true;
+			}
+			if (ableScrollTop)
+			{
+				scrollTop=document.documentElement.scrollTop;
+				scrollLeft=document.documentElement.scrollLeft;
+				maxScrollHeight=73;
+				increaseListLength=increaseListLengthDoc;
+				increaseScrollLength=increaseScrollLengthDoc;
+			}
+			else
+			{
+				maxScrollHeight=85;
+				increaseListLength=increaseListLengthUnDoc;
+				increaseScrollLength=increaseScrollLengthUnDoc;
+				scrollTop=document.body.scrollTop;
+				scrollLeft=document.body.scrollLeft;
+			}
+			if ((scrollTop >= (115+increaseScrollLength)) && (displayList==false))
+			{
+				if (ableScrollTop==false)
+				{
+					clearTimeout(increaseListTimeoutID);
+					clearTimeout(decreaseListTimeoutID);
+				}
+				list.style.top=(-228+maxScrollHeight-increaseListLength)+"px";
+				listPosition=maxScrollHeight-scrollTop;
+				if (scrollLeft > 0)
+				{
+					list.style.marginLeft=(-scrollLeft)+"px";
+				}
+				if (lastScrollTop < (115+increaseScrollLength))
+				{
+				    cancelChooseList.style.backgroundImage="url("+cancelChooseListImg+"/images/cancel_show_list.png)";
+					cancelChooseList.style.cssFloat="right";
+					cancelChooseList.style.width="15px";
+					cancelChooseList.style.height="15px";
+					cancelChooseList.style.marginTop="-17px";
+					cancelChooseList.style.marginRight="25px";
+					cancelChooseList.style.cursor="pointer";
+					cancelChooseList.onclick=function()
+					{
+						list.style.top="-170px";
+						list.style.display="none";
+						displayList=true;
+						var listIcon=document.getElementById("categories");
+						listIcon.style.backgroundImage="url("+cancelChooseListImg+"/images/list.png)";
+						listIcon.style.width="27px";
+						listIcon.style.height="20px";
+						listIcon.style.marginTop="-65px";
+						listIcon.style.marginRight="20px";
+						list.removeChild(cancelChooseList);
+					}
+					list.appendChild(cancelChooseList);
+				}
+			}
+			else if ((scrollTop < (115+increaseScrollLength)) && (displayList==false))
+			{
+				if (scrollLeft > 0)
+				{
+					list.style.marginLeft=(-scrollLeft)+"px";
+				}
+				if (scrollTop < 0)
+				{
+					list.style.top=(73-scrollTop)+"px";
+					listPosition=73;
+					clearTimeout(increaseListTimeoutID);
+					clearTimeout(decreaseListTimeoutID);
+					return;
+				}
+				if (lastScrollTop >=(115+increaseScrollLength))
+				{
+					list.removeChild(cancelChooseList);
+				}
+				function increasePosition()
+				{
+					list.style.top=(listPosition-scrollTop)+"px";
+					listPosition+=3;
+					if (listPosition < (73-scrollTop*2))
+					{
+						increaseListTimeoutID=setTimeout(increasePosition,6);
+					}
+					else
+					{
+						list.style.top=(73-scrollTop*2)+"px";
+						listPosition=73-scrollTop;
+					}
+				}
+				function decreasePosition()
+				{
+					list.style.top=(listPosition-scrollTop)+"px";
+					listPosition-=3;
+					if (scrollTop<=12)
+					{
+						maxScrollHeight=73;
+					}
+					else
+					{
+						maxScrollHeight=85;
+					}
+					if (listPosition>(maxScrollHeight-scrollTop))
+					{
+						decreaseListTimeoutID=setTimeout(decreasePosition,6);
+					}
+					else
+					{
+						list.style.top=(maxScrollHeight-scrollTop*2)+"px";
+						listPosition=maxScrollHeight-scrollTop;
+					}
+				}
+				if (lastScrollTop <= scrollTop)
+				{
+					list.style.top=(listPosition-scrollTop)+"px";
+					decreaseListTimeoutID=setTimeout(decreasePosition,6);
+				}
+				else
+				{
+					if (ableScrollTop)
+					{
+						list.style.top=(listPosition-scrollTop)+"px";
+					}
+					else
+					{
+						if (lastScrollTop >= (115+increaseScrollLength))
+						{
+							list.style.top=(-35-increaseScrollLength-scrollTop)+"px";
+							listPosition=-35-increaseScrollLength;
+						}
+						else
+						{
+							list.style.top=(listPosition-scrollTop)+"px";
+						}
+					}
+					increaseListTimeoutID=setTimeout(increasePosition,6);
+				}
+			}
+			lastScrollTop=scrollTop;
+		}
+		else if (list=document.getElementById("single-side"))
+		{
+			if (document.documentElement.scrollTop!=0)
+			{
+				ableScrollTop=true;
+			}
+			if (ableScrollTop)
+			{
+				scrollTop=document.documentElement.scrollTop;
+				scrollLeft=document.documentElement.scrollLeft;
+				maxScrollHeight=73;
+				increaseListLength=increaseListLengthDoc;
+				increaseScrollLength=increaseScrollLengthDoc;
+			}
+			else
+			{
+				maxScrollHeight=85;
+				increaseListLength=increaseListLengthUnDoc;
+				increaseScrollLength=increaseScrollLengthUnDoc;
+				scrollTop=document.body.scrollTop;
+				scrollLeft=document.body.scrollLeft;
+			}
+			if ((scrollTop >= (103+increaseScrollLength)) && (displayList==false))
+			{
+				if (ableScrollTop==false)
+				{
+					clearTimeout(increaseListTimeoutID);
+					clearTimeout(decreaseListTimeoutID);
+				}
+				list.style.top=(-288+maxScrollHeight-increaseListLength)+"px";
+				singleListPosition=-scrollTop;
+				if (scrollLeft > 0)
+				{
+					list.style.marginLeft=(-scrollLeft)+"px";
+				}
+				if (lastScrollTop < (103+increaseScrollLength))
+				{
+				    cancelChooseList.style.backgroundImage="url("+cancelChooseListImg+"/images/single_cancel_show_list.png)";
+					cancelChooseList.style.cssFloat="right";
+					cancelChooseList.style.width="15px";
+					cancelChooseList.style.height="15px";
+					cancelChooseList.style.marginTop="-17px";
+					cancelChooseList.style.marginRight="25px";
+					cancelChooseList.style.cursor="pointer";
+					cancelChooseList.onclick=function()
+					{
+						list.style.top="-250px";
+						list.style.display="none";
+						displayList=true;
+						var listIcon=document.getElementById("single-categories");
+						listIcon.style.backgroundImage="url("+cancelChooseListImg+"/images/single-list.png)";
+						listIcon.style.width="27px";
+						listIcon.style.height="20px";
+						listIcon.style.marginTop="-38px";
+						listIcon.style.marginRight="20px";
+						list.removeChild(cancelChooseList);
+					}
+					list.appendChild(cancelChooseList);
+				}
+			}
+			else if ((scrollTop < (103+increaseScrollLength)) && (displayList==false))
+			{
+				if (scrollLeft > 0)
+				{
+					list.style.marginLeft=(-scrollLeft)+"px";
+				}
+				if (scrollTop < 0)
+				{
+					clearTimeout(increaseListTimeoutID);
+					clearTimeout(decreaseListTimeoutID);
+					list.style.top="0";
+					singleListPosition=0;
+					return;
+				}
+				if (lastScrollTop >=(103+increaseScrollLength))
+				{
+					list.removeChild(cancelChooseList);
+				}
+				function increaseSinglePosition()
+				{
+					list.style.top=(singleListPosition-scrollTop)+"px";
+					singleListPosition+=3;
+					if (singleListPosition < (-scrollTop))
+					{
+						increaseListTimeoutID=setTimeout(increaseSinglePosition,6);
+					}
+					else
+					{
+						list.style.top=(-scrollTop*2)+"px";
+						singleListPosition=-scrollTop;
+					}
+				}
+				function decreaseSinglePosition()
+				{
+					list.style.top=(singleListPosition-scrollTop)+"px";
+					singleListPosition-=3;
+					if (scrollTop<=12)
+					{
+						maxScrollHeight=73;
+					}
+					else
+					{
+						maxScrollHeight=85;
+					}
+					if (singleListPosition>(-scrollTop))
+					{
+						decreaseListTimeoutID=setTimeout(decreaseSinglePosition,6);
+					}
+					else
+					{
+						list.style.top=-(scrollTop*2)+"px";
+						singleListPosition=-scrollTop;
+					}
+				}
+				if (lastScrollTop <= scrollTop)
+				{
+					list.style.top=(singleListPosition-scrollTop)+"px";
+					decreaseListTimeoutID=setTimeout(decreaseSinglePosition,6);
+				}
+				else
+				{
+					if (ableScrollTop)
+					{
+						list.style.top=(singleListPosition-scrollTop)+"px";
+					}
+					else
+					{
+						if (lastScrollTop >= (103+increaseScrollLength))
+						{
+							list.style.top=(-107-increaseScrollLength-scrollTop)+"px";
+							singleListPosition=-107-increaseScrollLength;
+						}
+						else
+						{
+							list.style.top=(singleListPosition-scrollTop)+"px";
+						}
+					}
+					increaseListTimeoutID=setTimeout(increaseSinglePosition,6);
+				}
+			}
+			lastScrollTop=scrollTop;
+		}
+}
+
+window.onresize=function()
+{
+	if (scrollLeft!=0)
+	{
+		var list=document.getElementById("side") ? document.getElementById("side") : document.getElementById("single-side");
+			list.style.marginLeft="0";
+	}
+}
+
+function showChildUl()
+{
+	var obj=document.getElementById("ul-img");
+	var childUl=document.getElementById("child-ul");
+		if (showChildList)
+		{
+			childUl.style.display="block";
+			increaseListLengthDoc=68;
+			increaseScrollLengthDoc=37;
+			increaseListLengthUnDoc=65;
+			increaseScrollLengthUnDoc=35;
+			obj.src=cancelChooseListImg+"/images/close_child_categories.png";
+			showChildList=false;
+		}
+		else
+		{
+			var childChildUl=document.getElementsByClassName("child-child-ul");
+			var childUlImg1=document.getElementById("child-ul-img1");
+			var childUlImg2=document.getElementById("child-ul-img2");
+				childUl.style.display="none";
+				childChildUl[0].style.display="none";
+				childChildUl[1].style.display="none";	
+				increaseListLengthDoc=0;
+				increaseScrollLengthDoc=0;
+				increaseListLengthUnDoc=0;
+				increaseScrollLengthUnDoc=0;
+				obj.src=cancelChooseListImg+"/images/child_categories.png";
+				childUlImg1.src=cancelChooseListImg+"/images/child_categories.png";
+				childUlImg2.src=cancelChooseListImg+"/images/child_categories.png";
+				showChildChildListFir=true;
+				showChildChildListSec=true;
+				showChildList=true;
+		}
+}
+
+function showChildChildUl(num)
+{
+	var obj=document.getElementById("child-ul-img"+(num+1));
+	var childChildUl=document.getElementsByClassName("child-child-ul")[num];
+		if (num==0)
+		{
+			if (showChildChildListFir==true)
+			{
+				increaseListLengthDoc+=75;
+				increaseScrollLengthDoc+=40;
+				increaseListLengthUnDoc+=66;
+				increaseScrollLengthUnDoc+=30;
+				obj.src=cancelChooseListImg+"/images/close_child_categories.png";
+				childChildUl.style.display="block";
+				showChildChildListFir=false;
+			}
+			else
+			{
+				increaseListLengthDoc-=75;
+				increaseScrollLengthDoc-=40;
+				increaseListLengthUnDoc-=66;
+				increaseScrollLengthUnDoc-=30;
+				obj.src=cancelChooseListImg+"/images/child_categories.png";
+				childChildUl.style.display="none";
+				showChildChildListFir=true;
+			}
+		}
+		else
+		{
+			if (showChildChildListSec==true)
+			{
+				increaseListLengthDoc+=71;
+				increaseScrollLengthDoc+=35;
+				increaseListLengthUnDoc+=64;
+				increaseScrollLengthUnDoc+=30;
+				obj.src=cancelChooseListImg+"/images/close_child_categories.png";
+				childChildUl.style.display="block";
+				showChildChildListSec=false;
+			}
+			else
+			{
+				increaseListLengthDoc-=71;
+				increaseScrollLengthDoc-=35;
+				increaseListLengthUnDoc-=64;
+				increaseScrollLengthUnDoc-=30;
+				obj.src=cancelChooseListImg+"/images/child_categories.png";
+				childChildUl.style.display="none";
+				showChildChildListSec=true;
+			}
+		}
+		clickChildChildList=true;
+}
+
+function childUlOver()
+{
+	var obj=document.getElementById("ul-img");
+		if (showChildList)
+		{
+			obj.src=cancelChooseListImg+"/images/child_categories_hover.png";
+		}
+		else
+		{
+			obj.src=cancelChooseListImg+"/images/close_child_categories_hover.png";
+		}
+}
+
+function childUlOut()
+{
+	var obj=document.getElementById("ul-img");
+		if (showChildList)
+		{
+			obj.src=cancelChooseListImg+"/images/child_categories.png";
+		}
+		else
+		{
+			obj.src=cancelChooseListImg+"/images/close_child_categories.png";
+		}
+}
+
+function childChildUlOver(num)
+{
+	var obj=document.getElementById("child-ul-img"+(num+1));
+		if (num==0)
+		{
+			if (showChildChildListFir)
+			{
+				obj.src=cancelChooseListImg+"/images/child_categories_hover.png";
+			}
+			else
+			{
+				obj.src=cancelChooseListImg+"/images/close_child_categories_hover.png";
+			}
+		}
+		else
+		{
+			if (showChildChildListSec)
+			{
+				obj.src=cancelChooseListImg+"/images/child_categories_hover.png";
+			}
+			else
+			{
+				obj.src=cancelChooseListImg+"/images/close_child_categories_hover.png";
+			}
+		}
+}
+
+function childChildUlOut(num)
+{
+	var obj=document.getElementById("child-ul-img"+(num+1));
+		if (num==0)
+		{
+			if (showChildChildListFir)
+			{
+				obj.src=cancelChooseListImg+"/images/child_categories.png";
+			}
+			else
+			{
+				obj.src=cancelChooseListImg+"/images/close_child_categories.png";
+			}
+		}
+		else
+		{
+			if (showChildChildListSec)
+			{
+				obj.src=cancelChooseListImg+"/images/child_categories.png";
+			}
+			else
+			{
+				obj.src=cancelChooseListImg+"/images/close_child_categories.png";
+			}
+		}
+}
+
+function showSingleList(obj,add)
+{
+	var list=document.getElementById("single-side");
+		list.style.display="block";
+		list.style.top=singleListPosition+"px";
+		if (scrollLeft!=0)
+		{
+			list.style.marginLeft=(-scrollLeft)+"px";
+		}
+		obj.style.backgroundImage="url("+add+"/images/click_single_cancel_show_list.png)";
+		obj.style.width="15px";
+		obj.style.height="15px";
+		obj.style.marginTop="-35px";
+		obj.style.marginRight="24px";
+		cancelChooseListImg=add;
+		listDisplayTime=0;
+		displayList=false;
+		function increasePosition()
+		{
+			list.style.top=singleListPosition+"px";
+			singleListPosition+=(1*(2*listDisplayTime+0.7));
+			listDisplayTime+=0.7;
+			if (singleListPosition < 0)
+			{
+				setTimeout(increasePosition,15);
+			}
+			else
+			{
+				list.style.top="0px";
+				singleListPosition=0;
+			}
+		}
+		setTimeout(increasePosition,15);
+}
+
+function unShowSingleList()
+{
+	var list=document.getElementById("single-side");
+	var obj=document.getElementById("single-categories");
+		listDisplayTime=0;
+		displayList=true;
+		function decreasePosition()
+		{
+			list.style.top=singleListPosition+"px";
+			singleListPosition-=(1*(2*listDisplayTime+0.7));
+			listDisplayTime+=0.7;
+			if (singleListPosition > (-250-increaseListLengthDoc))
+			{
+				setTimeout(decreasePosition,15);
+			}
+			else
+			{
+				list.style.display="none";
+				singleListPosition=-250-increaseListLengthDoc;
+				obj.style.backgroundImage="url("+cancelChooseListImg+"/images/single-list.png)";
+				obj.style.width="27px";
+				obj.style.height="20px";
+				obj.style.marginTop="-38px";
+				obj.style.marginRight="20px";
+			}
+		}
+		setTimeout(decreasePosition,15);
 }
