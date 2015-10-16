@@ -1,5 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
+@charset "utf-8";
+/* CSS Document */
 body
 {
 	width:100%;
@@ -602,8 +604,8 @@ body
 					
 	#single-side
 	{
-		position: fixed;
-		top: -250px;
+		position: absolute;
+		top: 0;
 		width: 100%;
 		min-width: 628px;
 		height: auto;
@@ -832,8 +834,8 @@ body
 		
 	#side
 	{
-		position: fixed;
-		top: -170px;
+		position: absolute;
+		top: 73px;
 		width: 100%;
 		min-width: 1200px;
 		height: auto;
@@ -926,36 +928,50 @@ body
 							padding-left: 110px;
 						}
 		
-		#search #s
+		#search
 		{
-			display: block;
-			float: left;
-			height: 18px;
-			width: 120px;
-			margin-left: 37.1%;
-			margin-top: 7px;
-			margin-bottom: 15px;
-			border:0;
-			background: #fff;
-			padding-left: 7px;
-			color:#999;
-			font-size: 13px;
-			outline: none;
+			height: 24px;
+			width: 200px;
+			margin: auto;
+			position: relative;
 		}
 		
-		#search #submit-button
-		{
-			width: 40px;
-			height: 21px;
-			margin-top: 7px;
-			margin-left: 10px;
-			font-family: Tahoma, Geneva, sans-serif;
-			font-size: 13px;
-			background: #DADADA;
-			border: 0;
-			cursor: pointer;
-			outline: none;
-		}
+			#search #s
+			{
+				float: left;
+				display: block;
+				height: 27px;
+				width: 120px;
+				margin: auto;
+				margin-top: 13px;
+				margin-bottom: 15px;
+				border-radius: 3px;
+				border:0;
+				background: #fff;
+				padding: 0;
+				padding-left: 7px;
+				color:#999;
+				font-size: 16px;
+				outline: none;
+			}
+		
+				input[type="button"], input[type="submit"], input[type="reset"] 
+				{
+					-webkit-appearance: none;
+				}
+		
+				#search #submit-button
+				{
+					float: right;
+					display: block;
+					height: 27px;
+					width: 40px;
+					margin-right: 10px;
+					margin-top: 13px;
+					border: 0;
+					border-radius: 0;
+					background: #8D8D8D;
+				}
 		
 	#footer
 	{

@@ -6,6 +6,17 @@
 </div>
 </div>
 <?php wp_footer(); ?>
-<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/script.js"></script>
+<?php 
+	if (judge_device($_SERVER['HTTP_USER_AGENT'])=="mobile"): ?>
+    	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/scriptMobile.js"></script>
+<?php
+	else: 
+		if (judge_device($_SERVER['HTTP_USER_AGENT'])=="pad"): ?>
+    		<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/scriptPad.js"></script>
+<?php	else: ?>
+			<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/script.js"></script>
+<?php	endif; ?>
+<?php
+ 	endif; ?>
 </body>
 </html>
