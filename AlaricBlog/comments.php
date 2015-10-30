@@ -42,7 +42,36 @@
                     		</div>
                     		<div class="input-content">
                         		<label for="comment">评论:</label>
-                        		<textarea name="comment" id="comment" rows="" cols="" onfocus="inputComment('comment')" onblur="finishCommentItem('comment')"></textarea>
+                                <div id="emotion" onclick="showEmotion()"></div>
+                                <div id="emotion-content">
+                                	<div id="smilelink">
+										<a onclick="javascript:grin(':?:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_question.gif" title="疑问" alt="疑问" /></a>
+										<a onclick="javascript:grin(':razz:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_razz.gif" title="调皮" alt="调皮" /></a>
+										<a onclick="javascript:grin(':sad:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_sad.gif" title="不开森" alt="不开森" /></a>
+										<a onclick="javascript:grin(':evil:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_evil.gif" title="挖鼻" alt="挖鼻" /></a>
+										<a onclick="javascript:grin(':!:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_exclaim.gif" title="吓" alt="吓" /></a>
+                                        <a onclick="javascript:grin(':smile:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_smile.gif" title="微笑" alt="微笑" /></a>
+                                        <a onclick="javascript:grin(':oops:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_redface.gif" title="可爱" alt="可爱" /></a>
+                                        <a onclick="javascript:grin(':grin:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_biggrin.gif" title="坏笑" alt="坏笑" /></a>
+                                        <a onclick="javascript:grin(':eek:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_eek.gif" title="吃惊" alt="吃惊" /></a>
+                                        <a onclick="javascript:grin(':shock:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_surprised.gif" title="吃惊" alt="吃惊" /></a>
+                                        <a onclick="javascript:grin(':???:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_confused.gif" title="撇嘴" alt="撇嘴" /></a>
+                                        <a onclick="javascript:grin(':cool:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_cool.gif" title="酷" alt="酷" /></a>
+                                        <a onclick="javascript:grin(':lol:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_lol.gif" title="偷笑" alt="偷笑" /></a>
+                                        <a onclick="javascript:grin(':mad:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_mad.gif" title="怒骂" alt="怒骂" /></a>
+                                        <a onclick="javascript:grin(':twisted:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_twisted.gif" title="怒" alt="怒" /></a>
+                                        <a onclick="javascript:grin(':roll:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_rolleyes.gif" title="白眼" alt="白眼" /></a>
+                                        <a onclick="javascript:grin(':wink:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_wink.gif" title="喝彩" alt="喝彩" /></a>
+                                        <a onclick="javascript:grin(':idea:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_idea.gif" title="得意" alt="得意" /></a>
+                                        <a onclick="javascript:grin(':arrow:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_arrow.gif" title="无语" alt="无语" /></a>
+                                        <a onclick="javascript:grin(':neutral:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_neutral.gif" title="亲亲" alt="亲亲" /></a>
+                                        <a onclick="javascript:grin(':cry:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_cry.gif" title="大哭" alt="大哭" /></a>
+                                        <a onclick="javascript:grin(':mrgreen:')"><img src="wp-content/themes/AlaricBlog/images/emotion/icon_mrgreen.gif" title="咧嘴" alt="咧嘴" /></a>
+									</div>
+                                </div>
+                        		<div id="commenttext-container">
+                        			<textarea name="comment" id="comment" rows="" cols=""></textarea>
+                                </div>
                                 <input  class="submit" type="submit" class="commentsubmit" value="" />
                                 <span id="submit-span">提交</span>
                     		</div>

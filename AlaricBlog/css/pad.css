@@ -102,7 +102,7 @@ body
 		float:left;
 		min-width: 960px;
 		height: 850px;
-		margin-left: 198px;
+		margin-left: 10%;
 		padding:0;
 	}
 	
@@ -197,7 +197,7 @@ body
 		clear: both;
 		margin-top: 10px;
 		margin-bottom: 100px;
-		margin-left: 570px;
+		margin-left: 40%;
 		margin-right: auto;
 		width: 405px;
 	}
@@ -547,6 +547,72 @@ body
 						visibility: hidden;
 					}
 					
+						.input-content #emotion
+					{
+						position: absolute;
+						width: 40px;
+						height: 50px;
+						right: 5px;
+						top: 25px;
+						background:url(../images/emotion.png) no-repeat;
+						cursor: pointer;
+					}
+					
+					#emotion-content
+					{
+						position: absolute;
+						width: 300px;
+						height: 200px;
+						right: 13px;
+						top: -185px;
+						border: 2px solid #c5c5c5;
+						background: #fdf9f5;
+						display: none;
+					}
+					
+						.input-content #emotion-content #smilelink a
+						{
+							display: block;
+							float: left;
+							width: 48px;
+							height: 48px;
+							border: 1px solid #E9E9E9;
+							cursor: pointer;
+						}
+						
+							.input-content #emotion-content #smilelink a img
+							{
+								margin-left: 13px;
+								margin-top: 13px;
+							}
+					
+					.input-content #commenttext-container
+					{
+						height: 180px;
+						width: 98.9%;
+						border:0;
+						background: #f7f7f7;
+						margin-top: 8px;
+						padding-left: 7px;
+						padding-top: 3px;
+						resize:none;
+						color:#000;
+						font-size: 14px;
+					}
+					
+						.input-content #commenttext-container #comment
+						{
+							border: 0;
+							width: 90%;
+							height: 90%;
+							margin: 0;
+							margin-right: 20px;
+							margin-bottom: 30px;
+							outline: none;
+							resize: none;
+							background: #f7f7f7;
+						}
+					
 					.input-content textarea
 					{
 						display: block;
@@ -601,6 +667,81 @@ body
 						border: 1px solid #FFF;
 						cursor: pointer;
 					}
+					
+						
+					.reply-emotion
+					{
+						display: block;
+						position: absolute;
+						right: 10%;
+						top: -10px;
+						width: 30px;
+						height: 30px;
+						padding-bottom: 5px;
+						background-color: #f7f7f7;
+						border-radius: 50%;
+						-ms-border-radius: 50%;
+						box-shadow: 1px 1px 1px #787878;
+						border: 1px solid #f7f7f7;
+						outline: none;
+						cursor: pointer;
+					}
+						
+					.reply-emotion-hover
+					{
+						display: block;
+						position: absolute;
+						right: 10%;
+						top: -10px;
+						width: 30px;
+						height: 30px;
+						padding-bottom: 5px;
+						background-color: #f7f7f7;
+						border-radius: 50%;
+						-ms-border-radius: 50%;
+						box-shadow: 1px 1px 1px #f7f7f7;
+						border: 1px solid #c5c5c5;
+						outline: none;
+						cursor: pointer;
+					}
+					
+						.reply-emotion-img
+						{
+							width: 25px;
+							height: 25px;
+							margin-left: -10px;
+							margin-top: 3px;
+							background: url(../images/reply_emotion.png);
+						}
+						
+						.reply-emotion-content
+						{
+							position: absolute;
+							width: 300px;
+							height: 200px;
+							right: 33px;
+							top: 337px;
+							border: 2px solid #c9c9c9;
+							background: #f7f7f7;
+							z-index: 2;
+							display: none;
+						}
+							
+							.reply-emotion-content #replysmilelink a
+							{
+								display: block;
+								float: left;
+								width: 48px;
+								height: 48px;
+								border: 1px solid #E9E9E9;
+								cursor: pointer;
+							}
+						
+								.reply-emotion-content #replysmilelink a img
+								{
+									margin-left: 13px;
+									margin-top: 13px;
+								}
 					
 	#single-side
 	{

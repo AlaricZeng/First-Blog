@@ -12,6 +12,10 @@
 		{  
 			$posts = query_posts($query_string . '&orderby=date&showposts=6'); 
 		}
+		else
+		{
+			$posts = query_posts($query_string . '&orderby=date&showposts=100'); 
+		}
 	?>
     <?php if (have_posts()): 
 			$post_position=0;

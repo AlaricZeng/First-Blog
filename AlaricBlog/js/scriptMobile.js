@@ -8,6 +8,8 @@ var searchInput=document.getElementById('s');
 var searchButton=document.getElementById('submit-button');
 var cancelChooseList=document.createElement("div");
 var lastCommentID=null;
+var showEmotionContent=true;
+var showReplyEmotionContent=true;
 
 function showList(obj,add)
 {
@@ -169,6 +171,10 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 			var containerDIV=document.getElementById("comment-"+commentID);
 			var newForm=document.createElement("form");
 			var newDIV=null;
+			var newInput=null;
+			var newEmotionButton=null;
+			var newEmotionButtonImg=null;
+			var newEmotionContent=null;
 				lastContainerDIV.removeChild(lastContainerDIV.lastChild);
 				newForm.action=postURL;
 				newForm.method="post";
@@ -185,6 +191,7 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 							author.style.outlineColor="#f00";
 							author.style.outlineWidth="1px";
 							author.style.backgroundColor="#fbdcdc";
+							newForm.querySelector(".warning-author").style.visibility="visible";
 						}
 						if (email.value=="" && email.style.outlineStyle!="solid")
 						{
@@ -192,6 +199,8 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 							email.style.outlineColor="#f00";
 							email.style.outlineWidth="1px";
 							email.style.backgroundColor="#fbdcdc";
+							newForm.querySelector(".warning-email").style.visibility="visible";
+					
 						}
 						return false;
 					}
@@ -204,6 +213,7 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 							email.style.outlineColor="#f00";
 							email.style.outlineWidth="1px";
 							email.style.backgroundColor="#fbdcdc";
+							newForm.querySelector(".warning-email").style.visibility="visible";
 						}
 						return false;
 					}
@@ -222,15 +232,50 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 			
 				newDIV=document.createElement("div");
 				newLabel=document.createElement("label");
+				newEmotionButton=document.createElement("div");
+				newEmotionButtonImg=document.createElement("div");
 				newTextarea=document.createElement("textarea");
 				newDIV.className="input-content";
 				newDIV.style.marginLeft="45px";
 				newLabel.for="comment";
 				newLabel.appendChild(document.createTextNode("评论:"));
+				newEmotionButton.name="emotion_button";
+				newEmotionButton.className="reply-emotion";
+				newEmotionButton.onclick=function()
+				{
+					newEmotionContent=document.getElementById("reply-emotion-content-"+commentID);
+					if (showReplyEmotionContent)
+					{
+						showReplyEmotionContent=false;
+						newEmotionButton.className="reply-emotion-hover";
+						newEmotionContent.style.display="block";
+						document.body.addEventListener("click",hideReplyEmotion,false);	
+					}
+					else
+					{
+						showReplyEmotionContent=true;
+						newEmotionButton.className="reply-emotion";
+						newEmotionContent.style.display="none";
+						document.body.removeEventListener("click",hideReplyEmotion,false);		
+					}
+				};
+				newEmotionButtonImg.className="reply-emotion-img";
+				newEmotionButton.appendChild(newEmotionButtonImg);
 				newTextarea.name="comment";
+				newTextarea.id="commentText-"+commentID;
 				newTextarea.style.backgroundColor="#fff";
 				newTextarea.style.width="90%"
+				newTextarea.onfocus=function(){
+					newTextarea.style.outlineStyle="solid";
+					newTextarea.style.outlineColor="#9ec0f7";
+					newTextarea.style.outlineWidth="2px";
+				};
+				newTextarea.onblur=function()
+				{
+					newTextarea.style.outlineStyle="none";
+				};
 				newDIV.appendChild(newLabel);
+				newDIV.appendChild(newEmotionButton);
 				newDIV.appendChild(newTextarea);
 				newForm.appendChild(newDIV);
 				
@@ -263,6 +308,10 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 		var containerDIV=document.getElementById("comment-"+commentID);
 		var newForm=document.createElement("form");
 		var newDIV=null;
+		var newInput=null;
+		var newEmotionButton=null;
+		var newEmotionButtonImg=null;
+		var newEmotionContent=null;
 			newForm.action=postURL;
 			newForm.method="post";
 			newForm.onsubmit=function()
@@ -278,13 +327,16 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 						author.style.outlineColor="#f00";
 						author.style.outlineWidth="1px";
 						author.style.backgroundColor="#fbdcdc";
+						newForm.querySelector(".warning-author").style.visibility="visible";
 					}
 					if (email.value=="" && email.style.outlineStyle!="solid")
 					{
 						email.style.outlineStyle="solid";
 						email.style.outlineColor="#f00";
 						email.style.outlineWidth="1px";
-						email.style.backgroundColor="#fbdcdc";	
+						email.style.backgroundColor="#fbdcdc";
+						newForm.querySelector(".warning-email").style.visibility="visible";
+				
 					}
 					return false;
 				}
@@ -297,6 +349,7 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 						email.style.outlineColor="#f00";
 						email.style.outlineWidth="1px";
 						email.style.backgroundColor="#fbdcdc";
+						newForm.querySelector(".warning-email").style.visibility="visible";
 					}
 					return false;
 				}
@@ -315,16 +368,51 @@ function replyComment(postID,commentID,postURL,author_name,author_email,author_u
 		
 			newDIV=document.createElement("div");
 			newLabel=document.createElement("label");
+			newEmotionButton=document.createElement("div");
+			newEmotionButtonImg=document.createElement("div");
 			newTextarea=document.createElement("textarea");
 			newDIV.className="input-content";
 			newDIV.style.marginLeft="45px";
 			newLabel.for="comment";
 			newLabel.appendChild(document.createTextNode("评论:"));
+			newEmotionButton.name="emotion_button";
+			newEmotionButton.className="reply-emotion";
+			newEmotionButton.onclick=function()
+			{
+				newEmotionContent=document.getElementById("reply-emotion-content-"+commentID);
+				if (showReplyEmotionContent)
+				{
+					showReplyEmotionContent=false;
+					newEmotionButton.className="reply-emotion-hover";
+					newEmotionContent.style.display="block";
+					document.body.addEventListener("click",hideReplyEmotion,false);	
+				}
+				else
+				{
+					showReplyEmotionContent=true;
+					newEmotionButton.className="reply-emotion";
+					newEmotionContent.style.display="none";
+					document.body.removeEventListener("click",hideReplyEmotion,false);		
+				}
+			};
+			newEmotionButtonImg.className="reply-emotion-img";
+			newEmotionButton.appendChild(newEmotionButtonImg);
 			newTextarea.name="comment";
+			newTextarea.id="commentText-"+commentID;
 			newTextarea.style.backgroundColor="#fff";
 			newTextarea.style.width="90%";
-			
+			newTextarea.onfocus=function(){
+				newTextarea.style.outlineStyle="solid";
+				newTextarea.style.outlineColor="#9ec0f7";
+				newTextarea.style.outlineWidth="2px";
+			};
+			newTextarea.onblur=function()
+			{
+				newTextarea.style.outlineStyle="none";
+			};
+
 			newDIV.appendChild(newLabel);
+			newDIV.appendChild(newEmotionButton);
 			newDIV.appendChild(newTextarea);
 			newForm.appendChild(newDIV);
 			
@@ -370,4 +458,134 @@ function createFormElement(labelTextNote,inputName,inputValue,commentID)
 		newDIV.appendChild(newLabel);
 		newDIV.appendChild(newInput);
 	return newDIV;
+}
+
+function grin(tag) 
+{
+    var myField;
+    	tag = ' ' + tag + ' ';
+        if (document.getElementById('comment') && document.getElementById('comment').type == 'textarea') 
+		{
+    		myField = document.getElementById('comment');
+    	} 
+		else 
+		{
+    		return false;
+    	}
+    	if (document.selection) 
+		{
+    		myField.focus();
+    		sel = document.selection.createRange();
+    		sel.text = tag;
+    		myField.focus();
+    	}
+    	else if (myField.selectionStart || myField.selectionStart == '0') 
+		{
+    		var startPos = myField.selectionStart;
+    		var endPos = myField.selectionEnd;
+    		var cursorPos = endPos;
+    		myField.value = myField.value.substring(0, startPos)
+    					  + tag
+    					  + myField.value.substring(endPos, myField.value.length);
+    		cursorPos += tag.length;
+    		myField.focus();
+    		myField.selectionStart = cursorPos;
+    		myField.selectionEnd = cursorPos;
+    	}
+    	else 
+		{
+    		myField.value += tag;
+    		myField.focus();
+    	}
+}
+
+function replyGrin(tag,commentID) 
+{
+    var myField;
+    	tag = ' ' + tag + ' ';
+        if (document.getElementById('commentText-'+commentID) && document.getElementById('commentText-'+commentID).type == 'textarea') 
+		{
+    		myField = document.getElementById('commentText-'+commentID);
+    	} 
+		else 
+		{
+    		return false;
+    	}
+    	if (document.selection) 
+		{
+    		myField.focus();
+    		sel = document.selection.createRange();
+    		sel.text = tag;
+    		myField.focus();
+    	}
+    	else if (myField.selectionStart || myField.selectionStart == '0') 
+		{
+    		var startPos = myField.selectionStart;
+    		var endPos = myField.selectionEnd;
+    		var cursorPos = endPos;
+    		myField.value = myField.value.substring(0, startPos)
+    					  + tag
+    					  + myField.value.substring(endPos, myField.value.length);
+    		cursorPos += tag.length;
+    		myField.focus();
+    		myField.selectionStart = cursorPos;
+    		myField.selectionEnd = cursorPos;
+    	}
+    	else 
+		{
+    		myField.value += tag;
+    		myField.focus();
+    	}		
+}
+
+var hideEmotion=function(event)
+{
+	var emotionContent=document.getElementById("emotion-content");
+	event = event ? event : window.event;
+	var obj= event.srcElement ? event.srcElement : event.target;
+		if ((obj.id!="emotion") && (obj.id!="emotion-content"))
+		{	
+			showEmotionContent=true;
+			emotionContent.style.display="none";
+			document.body.removeEventListener("click",hideEmotion,false);	
+		}			
+}
+
+var hideReplyEmotion=function(event)
+{
+	var replyEmotionContent=document.getElementsByClassName("reply-emotion-content");
+	var replyEmotionButton=null;
+	event = event ? event : window.event;
+	var obj= event.srcElement ? event.srcElement : event.target;
+		if ((obj.className!="reply-emotion-hover") && (obj.className!="reply-emotion-img") && (obj.className!="reply-emotion-content"))
+		{
+			if (replyEmotionButton=document.getElementsByClassName("reply-emotion-hover")[0])
+			{
+				replyEmotionButton.className="reply-emotion";
+			}
+			showReplyEmotionContent=true;
+			for (var pos in replyEmotionContent)
+			{
+				replyEmotionContent[pos].style.display="none";
+			}
+			document.body.removeEventListener("click",hideReplyEmotion,false);	
+		}
+}
+
+
+function showEmotion()
+{
+	var emotionContent=document.getElementById("emotion-content");
+		if (showEmotionContent)
+		{
+			showEmotionContent=false;
+			emotionContent.style.display="block";
+			document.body.addEventListener("click",hideEmotion,false);	
+		}
+		else
+		{
+			showEmotionContent=true;
+			emotionContent.style.display="none";
+			document.body.removeEventListener("click",hideEmotion,false);		
+		}
 }
